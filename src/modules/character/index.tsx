@@ -7,7 +7,7 @@ import { useCharactersQuery } from 'src/generated/graphql'
 import { CharacterCard } from '../../ui/Card'
 
 const Container = styled.View`
-  padding: 45px 15px;
+  padding: 25px 15px 45px;
 `
 
 const Title = styled.Text`
