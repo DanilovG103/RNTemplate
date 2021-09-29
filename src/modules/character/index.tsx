@@ -4,7 +4,7 @@ import styled from 'styled-components/native'
 
 import { useCharactersQuery } from 'src/generated/graphql'
 
-import { CharacterCard } from '../../ui/card'
+import { CharacterCard } from '../../ui/characterCard'
 
 const Container = styled.View`
   padding: 25px 15px 45px;
