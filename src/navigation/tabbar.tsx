@@ -6,26 +6,35 @@ import { CharacterScreen } from 'src/modules/character'
 import { EpisodeScreen } from 'src/modules/episode'
 import { LocationScreen } from 'src/modules/location'
 
+import { CharacterIcon } from '../../assets/images/icons/Character'
+import { EpisodeIcon } from '../../assets/images/icons/Episode'
+import { LocationIcon } from '../../assets/images/icons/Location'
+import { colors } from '../theme/colors'
 import { Routes } from './routes'
 
 const Tab = createBottomTabNavigator()
 
 export const TabBar = () => {
   return (
-    <Tab.Navigator initialRouteName={Routes.CharacterScreen}>
+    <Tab.Navigator
+      initialRouteName={Routes.CharacterScreen}
+      screenOptions={{ headerShown: false }}>
       <Tab.Screen
         name={Routes.CharacterScreen}
         component={CharacterScreen}
         options={{
-          headerTitle: 'Characters',
-          tabBarIcon: ({ focused }) => <View />,
+          tabBarLabel: 'Characters',
+          tabBarActiveTintColor: colors.indigo,
+          tabBarIcon: ({ focused }) => <CharacterIcon focused={focused} />,
         }}
       />
       <Tab.Screen
         name={Routes.LocationScreen}
         component={LocationScreen}
         options={{
-          tabBarIcon: ({ focused }) => <View />,
+          tabBarLabel: 'Location',
+          tabBarIcon: ({ focused }) => <LocationIcon focused={focused} />,
+          tabBarActiveTintColor: colors.indigo,
         }}
       />
 
@@ -33,8 +42,10 @@ export const TabBar = () => {
         name={Routes.EpisodeScreen}
         component={EpisodeScreen}
         options={{
+          tabBarLabel: 'Episode',
           headerTitle: 'Episode',
-          tabBarIcon: ({ focused }) => <View />,
+          tabBarActiveTintColor: colors.indigo,
+          tabBarIcon: ({ focused }) => <EpisodeIcon focused={focused} />,
         }}
       />
     </Tab.Navigator>
