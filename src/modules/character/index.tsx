@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { FlatList } from 'react-native'
+import { ActivityIndicator, FlatList } from 'react-native'
 import styled from 'styled-components/native'
 
 import { useCharactersQuery } from 'src/generated/graphql'
@@ -17,11 +17,27 @@ const Title = styled.Text`
 
 export const CharacterScreen = () => {
   const [page, setPage] = useState(1)
-  const { data } = useCharactersQuery({
-    variables: { page, name: '' },
+  const { data, fetchMore } = useCharactersQuery({
+    variables: { page: 1, name: '' },
   })
 
-  const loadMore = () => {
+  const loadMore = async () => {
+    await fetchMore({
+      variables: {
+        page: page + 1,
+      },
+
+      updateQuery: (prevData, { fetchMoreResult }) => {
+        return {
+          characters: {
+            results: [
+              ...(prevData?.characters?.results ?? []),
+              ...(fetchMoreResult?.characters?.results ?? []),
+            ],
+          },
+        }
+      },
+    })
     setPage((prev) => prev + 1)
   }
 
@@ -37,10 +53,11 @@ export const CharacterScreen = () => {
         numColumns={2}
         showsVerticalScrollIndicator={false}
         renderItem={renderCharacters}
-        data={data?.characters.results}
-        keyExtractor={(item) => item.id}
+        data={data?.characters?.results}
+        keyExtractor={(item) => item?.id}
         onEndReached={loadMore}
         onEndReachedThreshold={1}
+        ListFooterComponent={<ActivityIndicator size="large" />}
       />
     </Container>
   )
