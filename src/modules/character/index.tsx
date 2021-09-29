@@ -3,8 +3,7 @@ import { ActivityIndicator, FlatList } from 'react-native'
 import styled from 'styled-components/native'
 
 import { useCharactersQuery } from 'src/generated/graphql'
-
-import { CharacterCard } from '../../ui/characterCard'
+import { CharacterCard } from 'src/ui/character-card'
 
 const Container = styled.View`
   padding: 25px 15px 45px;
