@@ -1,18 +1,9 @@
 import React, { useState } from 'react'
 import { ActivityIndicator, FlatList } from 'react-native'
-import styled from 'styled-components/native'
 
 import { useCharactersQuery } from 'src/generated/graphql'
 import { CharacterCard } from 'src/ui/character-card'
-
-const Container = styled.View`
-  padding: 25px 15px 45px;
-`
-
-const Title = styled.Text`
-  font-family: Montserrat-Bold;
-  font-size: 34px;
-`
+import { Container } from 'src/ui/container'
 
 export const CharacterScreen = () => {
   const [page, setPage] = useState(1)
@@ -45,8 +36,7 @@ export const CharacterScreen = () => {
   }
 
   return (
-    <Container>
-      <Title>Character</Title>
+    <Container title="Character">
       <FlatList
         horizontal={false}
         numColumns={2}
