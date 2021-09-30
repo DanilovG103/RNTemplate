@@ -7,6 +7,11 @@ const getLocations = gql`
         id
         name
         type
+        created
+        dimension
+        residents {
+          name
+        }
       }
     }
   }
