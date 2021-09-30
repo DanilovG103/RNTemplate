@@ -1,18 +1,9 @@
 import React, { useState } from 'react'
 import { ActivityIndicator, FlatList } from 'react-native'
-import styled from 'styled-components/native'
 
 import { useLocationsQuery } from 'src/generated/graphql'
+import { Container } from 'src/ui/container'
 import { LocationCard } from 'src/ui/location-card'
-
-const Container = styled.View`
-  padding: 25px 15px 45px;
-`
-
-const Title = styled.Text`
-  font-family: Montserrat-Bold;
-  font-size: 34px;
-`
 
 export const LocationScreen = () => {
   const [page, setPage] = useState(1)
@@ -43,8 +34,7 @@ export const LocationScreen = () => {
   }
 
   return (
-    <Container>
-      <Title>Location</Title>
+    <Container title="Location">
       <FlatList
         data={data?.locations?.results}
         renderItem={renderLocations}

@@ -6,16 +6,15 @@ import { Location } from 'src/generated/graphql'
 import { colors } from 'src/theme/colors'
 
 const Card = styled.View`
-  border: 1px solid ${colors.lightGray};
-  max-width: 155px;
-  width: ${Dimensions.get('window').width - 150}px;
+  border: 1px solid ${colors.gray[2]};
+  width: ${Dimensions.get('window').width - 220}px;
   border-radius: 8px;
   margin: 5px;
   padding: 5px 15px 15px;
 `
 
 const Type = styled.Text`
-  color: ${colors.additional};
+  color: ${colors.gray[0]};
   font-size: 11px;
 `
 

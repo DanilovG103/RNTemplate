@@ -25,7 +25,7 @@ const Image = styled.Image`
 `
 
 const Status = styled.Text`
-  color: ${colors.additional};
+  color: ${colors.gray[0]};
 `
 
 const InfoBlock = styled.View`
