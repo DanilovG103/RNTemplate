@@ -5,8 +5,6 @@ import { useLocationsQuery } from 'src/generated/graphql'
 import { Container } from 'src/ui/container'
 import { LocationCard } from 'src/ui/location-card'
 
-import { LocationRenderProps } from './types'
-
 export const LocationScreen = () => {
   const [page, setPage] = useState(1)
   const { data, fetchMore } = useLocationsQuery({ variables: { page: 1 } })
