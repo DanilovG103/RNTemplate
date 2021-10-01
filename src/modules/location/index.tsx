@@ -9,6 +9,8 @@ export const LocationScreen = () => {
   const [page, setPage] = useState(1)
   const { data, fetchMore } = useLocationsQuery({ variables: { page: 1 } })
 
+  const limit = data?.locations?.results?.length === 108
+
   const loadMore = async () => {
     await fetchMore({
       variables: {
@@ -38,9 +40,9 @@ export const LocationScreen = () => {
         numColumns={2}
         showsVerticalScrollIndicator={false}
         keyExtractor={(item) => item?.id as string}
-        onEndReached={loadMore}
+        onEndReached={limit ? null : loadMore}
         onEndReachedThreshold={1}
-        ListFooterComponent={<ActivityIndicator size="large" />}
+        ListFooterComponent={limit ? null : <ActivityIndicator size="large" />}
       />
     </Container>
   )

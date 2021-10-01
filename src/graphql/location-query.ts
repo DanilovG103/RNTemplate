@@ -17,4 +17,19 @@ const getLocations = gql`
   }
 `
 
-export { getLocations }
+const getLocation = gql`
+  query Location($id: ID!) {
+    location(id: $id) {
+      name
+      type
+      dimension
+      residents {
+        name
+        status
+        image
+      }
+    }
+  }
+`
+
+export { getLocations, getLocation }
