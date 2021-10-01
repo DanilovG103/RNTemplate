@@ -14,9 +14,9 @@ export const LocationStack = () => {
     <Location.Navigator
       initialRouteName={Routes.LocationScreen}
       screenOptions={{
-        header: ({ route }) =>
+        header: ({ navigation, route }) =>
           route.name === Routes.DetailedLocation ? (
-            <Header route={route} />
+            <Header route={route} navigation={navigation} />
           ) : null,
       }}>
       <Location.Screen
