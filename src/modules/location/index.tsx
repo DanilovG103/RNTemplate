@@ -9,7 +9,8 @@ export const LocationScreen = () => {
   const [page, setPage] = useState(1)
   const { data, fetchMore } = useLocationsQuery({ variables: { page: 1 } })
 
-  const limit = data?.locations?.results?.length === 108
+  const limit =
+    data?.locations?.results?.length === data?.locations?.info?.count
 
   const loadMore = async () => {
     await fetchMore({
@@ -20,6 +21,9 @@ export const LocationScreen = () => {
       updateQuery: (prevData, { fetchMoreResult }) => {
         return {
           locations: {
+            info: {
+              count: prevData.locations?.info?.count,
+            },
             results: [
               ...(prevData?.locations?.results ?? []),
               ...(fetchMoreResult?.locations?.results ?? []),

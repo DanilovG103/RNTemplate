@@ -11,14 +11,7 @@ const Location = createNativeStackNavigator()
 
 export const LocationStack = () => {
   return (
-    <Location.Navigator
-      initialRouteName={Routes.LocationScreen}
-      screenOptions={{
-        header: ({ navigation, route }) =>
-          route.name === Routes.DetailedLocation ? (
-            <Header route={route} navigation={navigation} />
-          ) : null,
-      }}>
+    <Location.Navigator initialRouteName={Routes.LocationScreen}>
       <Location.Screen
         name={Routes.LocationScreen}
         component={LocationScreen}
@@ -26,6 +19,11 @@ export const LocationStack = () => {
       <Location.Screen
         name={Routes.DetailedLocation}
         component={DetailedLocation}
+        options={{
+          header: ({ navigation, route }) => (
+            <Header route={route} navigation={navigation} />
+          ),
+        }}
       />
     </Location.Navigator>
   )

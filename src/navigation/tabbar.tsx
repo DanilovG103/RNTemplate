@@ -1,14 +1,12 @@
 import React from 'react'
-import { View } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { CharacterIcon } from 'assets/images/icons/Character'
+import { EpisodeIcon } from 'assets/images/icons/Episode'
+import { LocationIcon } from 'assets/images/icons/Location'
 
 import { CharacterScreen } from 'src/modules/character'
 import { EpisodeScreen } from 'src/modules/episode'
-import { LocationScreen } from 'src/modules/location'
 
-import { CharacterIcon } from '../../assets/images/icons/Character'
-import { EpisodeIcon } from '../../assets/images/icons/Episode'
-import { LocationIcon } from '../../assets/images/icons/Location'
 import { colors } from '../theme/colors'
 import { LocationStack } from './location-stack'
 import { Routes } from './routes'

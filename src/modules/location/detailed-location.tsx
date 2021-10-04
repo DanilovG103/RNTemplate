@@ -1,5 +1,6 @@
 import React from 'react'
 import { FlatList } from 'react-native'
+import { useRoute } from '@react-navigation/core'
 import styled from 'styled-components/native'
 
 import { useLocationQuery } from 'src/generated/graphql'
@@ -52,8 +53,11 @@ const NoResidents = styled.Text`
   margin: auto;
 `
 
-export const DetailedLocation = ({ route }) => {
-  const { data } = useLocationQuery({ variables: { id: route.params.id } })
+export const DetailedLocation = () => {
+  const route = useRoute()
+  const { data } = useLocationQuery({ variables: { id: route?.params?.id } })
+
+  const isNoResidents = data?.location?.residents.length === 0
 
   return (
     <Background>
@@ -63,7 +67,7 @@ export const DetailedLocation = ({ route }) => {
         <Dimension>{data?.location?.dimension}</Dimension>
       </Block>
       <Residents>Residents</Residents>
-      {data?.location?.residents.length === 0 ? (
+      {isNoResidents ? (
         <NoResidents>No residents on this location</NoResidents>
       ) : (
         <FlatList
