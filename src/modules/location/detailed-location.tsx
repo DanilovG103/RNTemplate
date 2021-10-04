@@ -50,14 +50,21 @@ const NoResidents = styled.Text`
   color: ${colors.dark};
   font-size: 16px;
   font-family: Montserrat-SemiBold;
-  margin: auto;
+`
+
+const EmptyDataWrapper = styled.View`
+  margin: 25px;
 `
 
 export const DetailedLocation = () => {
   const route = useRoute()
   const { data } = useLocationQuery({ variables: { id: route?.params?.id } })
 
-  const isNoResidents = data?.location?.residents.length === 0
+  const EmptyData = () => (
+    <EmptyDataWrapper>
+      <NoResidents>No residents on this location</NoResidents>
+    </EmptyDataWrapper>
+  )
 
   return (
     <Background>
@@ -67,18 +74,15 @@ export const DetailedLocation = () => {
         <Dimension>{data?.location?.dimension}</Dimension>
       </Block>
       <Residents>Residents</Residents>
-      {isNoResidents ? (
-        <NoResidents>No residents on this location</NoResidents>
-      ) : (
-        <FlatList
-          data={data?.location?.residents}
-          showsVerticalScrollIndicator={false}
-          keyExtractor={(item) => item?.id}
-          numColumns={2}
-          horizontal={false}
-          renderItem={({ item }) => <CharacterCard character={item} />}
-        />
-      )}
+      <FlatList
+        data={data?.location?.residents}
+        showsVerticalScrollIndicator={false}
+        keyExtractor={(item) => item?.id}
+        numColumns={2}
+        horizontal={false}
+        renderItem={({ item }) => <CharacterCard character={item} />}
+        ListEmptyComponent={EmptyData}
+      />
     </Background>
   )
 }
