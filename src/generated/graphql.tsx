@@ -199,6 +199,13 @@ export type QueryLocationsByIdsArgs = {
   ids: Array<Scalars['ID']>
 }
 
+export type CharactersFragment = {
+  __typename?: 'Character'
+  name: Maybe<string>
+  status: Maybe<string>
+  image: Maybe<string>
+}
+
 export type CharactersQueryVariables = Exact<{
   page: Maybe<Scalars['Int']>
   name: Maybe<Scalars['String']>
@@ -222,13 +229,6 @@ export type CharactersQuery = {
       >
     >
   }>
-}
-
-export type CharactersFragment = {
-  __typename?: 'Character'
-  name: Maybe<string>
-  status: Maybe<string>
-  image: Maybe<string>
 }
 
 export type LocationsQueryVariables = Exact<{

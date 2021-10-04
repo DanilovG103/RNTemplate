@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client'
 
-import { characters } from './fragments'
+import { charactersField } from '../fragments'
 
 const getLocations = gql`
   query Locations($page: Int) {
@@ -23,7 +23,7 @@ const getLocations = gql`
 `
 
 const getLocation = gql`
-  ${characters}
+  ${charactersField}
   query Location($id: ID!) {
     location(id: $id) {
       name
