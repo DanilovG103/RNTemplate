@@ -35,7 +35,7 @@ const TitleBlock = styled.View`
 export const Header = ({ route, navigation }) => {
   return (
     <Row>
-      <Back onPress={() => navigation.goBack()}>
+      <Back onPress={navigation.goBack}>
         <BackArrow />
         <BackText>Back</BackText>
       </Back>
