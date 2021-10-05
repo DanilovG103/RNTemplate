@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FlatList } from 'react-native'
 import { useRoute } from '@react-navigation/core'
 import styled from 'styled-components/native'
 
 import { useLocationQuery } from 'src/generated/graphql'
+import { useNavigation } from 'src/navigation/routes'
 import { colors } from 'src/theme/colors'
 import { CharacterCard } from 'src/ui/character-card'
 
@@ -57,8 +58,13 @@ const EmptyDataWrapper = styled.View`
 `
 
 export const DetailedLocation = () => {
+  const navigation = useNavigation()
   const route = useRoute()
   const { data } = useLocationQuery({ variables: { id: route?.params?.id } })
+
+  useEffect(() => {
+    navigation.setOptions({ title: route?.params?.name })
+  }, [navigation, route])
 
   const EmptyData = () => (
     <EmptyDataWrapper>

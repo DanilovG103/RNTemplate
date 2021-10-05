@@ -20,9 +20,8 @@ export const LocationStack = () => {
         name={Routes.DetailedLocation}
         component={DetailedLocation}
         options={{
-          header: ({ navigation, route }) => (
-            <Header route={route} navigation={navigation} />
-          ),
+          headerTitleAlign: 'center',
+          headerLeft: () => <Header />,
         }}
       />
     </Location.Navigator>
