@@ -9,6 +9,9 @@ export const LocationScreen = () => {
   const [page, setPage] = useState(1)
   const { data, fetchMore } = useLocationsQuery({ variables: { page: 1 } })
 
+  const limit =
+    data?.locations?.results?.length === data?.locations?.info?.count
+
   const loadMore = async () => {
     await fetchMore({
       variables: {
@@ -18,6 +21,9 @@ export const LocationScreen = () => {
       updateQuery: (prevData, { fetchMoreResult }) => {
         return {
           locations: {
+            info: {
+              count: prevData.locations?.info?.count,
+            },
             results: [
               ...(prevData?.locations?.results ?? []),
               ...(fetchMoreResult?.locations?.results ?? []),
@@ -38,9 +44,9 @@ export const LocationScreen = () => {
         numColumns={2}
         showsVerticalScrollIndicator={false}
         keyExtractor={(item) => item?.id as string}
-        onEndReached={loadMore}
+        onEndReached={limit ? null : loadMore}
         onEndReachedThreshold={1}
-        ListFooterComponent={<ActivityIndicator size="large" />}
+        ListFooterComponent={limit ? null : <ActivityIndicator size="large" />}
       />
     </Container>
   )
