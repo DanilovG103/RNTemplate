@@ -7,44 +7,14 @@ import { useLocationQuery } from 'src/generated/graphql'
 import { useNavigation } from 'src/navigation/routes'
 import { colors } from 'src/theme/colors'
 import { CharacterCard } from 'src/ui/character-card'
+import { DetailedContainer } from 'src/ui/detailed-container'
 
-const Background = styled.View`
-  background: ${colors.gray[4]};
-  flex: 1;
-  align-items: center;
-`
-
-const Block = styled.View`
-  background: ${colors.gray[3]};
-  align-items: center;
-  padding: 30px;
-  width: 100%;
-`
-
-const Type = styled.Text`
-  font-size: 11px;
-  color: ${colors.gray[0]};
-  font-family: Montserrat;
-`
-
-const Name = styled.Text`
-  color: ${colors.dark};
-  font-size: 28px;
-  font-family: Montserrat-Bold;
-  text-align: center;
-`
-
-const Dimension = styled.Text`
-  color: ${colors.gray[5]};
-  font-size: 13px;
-  font-family: Montserrat-SemiBold;
-`
-
-const Residents = styled(Dimension)`
+const Residents = styled.Text`
   align-self: flex-start;
   font-size: 20px;
   font-family: Montserrat-Bold;
   margin: 15px 20px 0;
+  color: ${colors.gray[5]};
 `
 
 const NoResidents = styled.Text`
@@ -73,12 +43,10 @@ export const DetailedLocation = () => {
   )
 
   return (
-    <Background>
-      <Block>
-        <Type>{data?.location?.type}</Type>
-        <Name>{data?.location?.name}</Name>
-        <Dimension>{data?.location?.dimension}</Dimension>
-      </Block>
+    <DetailedContainer
+      title={data?.location?.name}
+      firstInfo={data?.location?.type}
+      secondInfo={data?.location?.dimension}>
       <Residents>Residents</Residents>
       <FlatList
         data={data?.location?.residents}
@@ -89,6 +57,6 @@ export const DetailedLocation = () => {
         renderItem={({ item }) => <CharacterCard character={item} />}
         ListEmptyComponent={EmptyData}
       />
-    </Background>
+    </DetailedContainer>
   )
 }
