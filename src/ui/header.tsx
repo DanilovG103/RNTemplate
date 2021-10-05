@@ -1,4 +1,6 @@
 import React from 'react'
+import { ParamListBase, Route } from '@react-navigation/core'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { BackArrow } from 'assets/images/icons/BackArrow'
 import styled from 'styled-components/native'
 
@@ -19,7 +21,6 @@ const BackText = styled.Text`
 const Title = styled.Text`
   font-family: Montserrat-SemiBold;
   color: ${colors.dark};
-  margin: 0 40px;
 `
 
 const Row = styled.View`
@@ -30,9 +31,15 @@ const Row = styled.View`
 
 const TitleBlock = styled.View`
   width: 200px;
+  margin: 0 40px;
 `
 
-export const Header = ({ route, navigation }) => {
+interface Props {
+  route: Route<string, Record<string, string> | undefined>
+  navigation: NativeStackNavigationProp<ParamListBase, string>
+}
+
+export const Header = ({ route, navigation }: Props) => {
   return (
     <Row>
       <Back onPress={navigation.goBack}>
@@ -40,7 +47,7 @@ export const Header = ({ route, navigation }) => {
         <BackText>Back</BackText>
       </Back>
       <TitleBlock>
-        <Title numberOfLines={1}>{route.params.name}</Title>
+        <Title numberOfLines={1}>{route?.params?.name}</Title>
       </TitleBlock>
     </Row>
   )
