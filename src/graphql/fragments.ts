@@ -9,7 +9,7 @@ export const charactersField = gql`
 `
 
 export const infoField = gql`
-  fragment info on Info {
+  fragment infoField on Info {
     count
   }
 `

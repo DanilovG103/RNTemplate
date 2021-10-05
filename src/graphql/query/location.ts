@@ -7,7 +7,7 @@ const getLocations = gql`
   query Locations($page: Int) {
     locations(page: $page) {
       info {
-        ...info
+        ...infoField
       }
       results {
         id

@@ -8,7 +8,7 @@ export const getEpisodes = gql`
   query Episodes($page: Int) {
     episodes(page: $page) {
       info {
-        ...info
+        ...infoField
       }
       results {
         id

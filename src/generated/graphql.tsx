@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client'
 import * as Apollo from '@apollo/client'
 
-export type Maybe<T> = T | null
+export type Maybe<T> = T
 export type Exact<T extends { [key: string]: unknown }> = {
   [K in keyof T]: T[K]
 }
@@ -206,7 +206,7 @@ export type CharactersFragment = {
   image: Maybe<string>
 }
 
-export type InfoFragment = { __typename?: 'Info'; count: Maybe<number> }
+export type InfoFieldFragment = { __typename?: 'Info'; count: Maybe<number> }
 
 export type EpisodeFragment = {
   __typename?: 'Episode'
@@ -341,8 +341,8 @@ export const CharactersFragmentDoc = gql`
     image
   }
 `
-export const InfoFragmentDoc = gql`
-  fragment info on Info {
+export const InfoFieldFragmentDoc = gql`
+  fragment infoField on Info {
     count
   }
 `
@@ -426,7 +426,7 @@ export const EpisodesDocument = gql`
   query Episodes($page: Int) {
     episodes(page: $page) {
       info {
-        ...info
+        ...infoField
       }
       results {
         id
@@ -434,7 +434,7 @@ export const EpisodesDocument = gql`
       }
     }
   }
-  ${InfoFragmentDoc}
+  ${InfoFieldFragmentDoc}
   ${EpisodeFragmentDoc}
 `
 
@@ -549,7 +549,7 @@ export const LocationsDocument = gql`
   query Locations($page: Int) {
     locations(page: $page) {
       info {
-        ...info
+        ...infoField
       }
       results {
         id
@@ -563,7 +563,7 @@ export const LocationsDocument = gql`
       }
     }
   }
-  ${InfoFragmentDoc}
+  ${InfoFieldFragmentDoc}
 `
 
 /**
