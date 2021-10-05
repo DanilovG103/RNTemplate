@@ -1,12 +1,13 @@
 import { gql } from '@apollo/client'
 
-import { charactersField } from '../fragments'
+import { charactersField, infoField } from '../fragments'
 
 const getLocations = gql`
+  ${infoField}
   query Locations($page: Int) {
     locations(page: $page) {
       info {
-        count
+        ...info
       }
       results {
         id

@@ -206,6 +206,8 @@ export type CharactersFragment = {
   image: Maybe<string>
 }
 
+export type InfoFragment = { __typename?: 'Info'; count: Maybe<number> }
+
 export type CharactersQueryVariables = Exact<{
   page: Maybe<Scalars['Int']>
   name: Maybe<Scalars['String']>
@@ -225,6 +227,29 @@ export type CharactersQuery = {
           status: Maybe<string>
           gender: Maybe<string>
           location: Maybe<{ __typename?: 'Location'; name: Maybe<string> }>
+        }>
+      >
+    >
+  }>
+}
+
+export type EpisodesQueryVariables = Exact<{
+  page: Maybe<Scalars['Int']>
+}>
+
+export type EpisodesQuery = {
+  __typename?: 'Query'
+  episodes: Maybe<{
+    __typename?: 'Episodes'
+    info: Maybe<{ __typename?: 'Info'; count: Maybe<number> }>
+    results: Maybe<
+      Array<
+        Maybe<{
+          __typename?: 'Episode'
+          id: Maybe<string>
+          name: Maybe<string>
+          episode: Maybe<string>
+          air_date: Maybe<string>
         }>
       >
     >
@@ -285,6 +310,11 @@ export const CharactersFragmentDoc = gql`
     name
     status
     image
+  }
+`
+export const InfoFragmentDoc = gql`
+  fragment info on Info {
+    count
   }
 `
 export const CharactersDocument = gql`
@@ -356,11 +386,76 @@ export type CharactersQueryResult = Apollo.QueryResult<
   CharactersQuery,
   CharactersQueryVariables
 >
+export const EpisodesDocument = gql`
+  query Episodes($page: Int) {
+    episodes(page: $page) {
+      info {
+        ...info
+      }
+      results {
+        id
+        name
+        episode
+        air_date
+      }
+    }
+  }
+  ${InfoFragmentDoc}
+`
+
+/**
+ * __useEpisodesQuery__
+ *
+ * To run a query within a React component, call `useEpisodesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useEpisodesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useEpisodesQuery({
+ *   variables: {
+ *      page: // value for 'page'
+ *   },
+ * });
+ */
+export function useEpisodesQuery(
+  baseOptions?: Apollo.QueryHookOptions<EpisodesQuery, EpisodesQueryVariables>,
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+
+  return Apollo.useQuery<EpisodesQuery, EpisodesQueryVariables>(
+    EpisodesDocument,
+    options,
+  )
+}
+
+export function useEpisodesLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    EpisodesQuery,
+    EpisodesQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+
+  return Apollo.useLazyQuery<EpisodesQuery, EpisodesQueryVariables>(
+    EpisodesDocument,
+    options,
+  )
+}
+export type EpisodesQueryHookResult = ReturnType<typeof useEpisodesQuery>
+export type EpisodesLazyQueryHookResult = ReturnType<
+  typeof useEpisodesLazyQuery
+>
+export type EpisodesQueryResult = Apollo.QueryResult<
+  EpisodesQuery,
+  EpisodesQueryVariables
+>
 export const LocationsDocument = gql`
   query Locations($page: Int) {
     locations(page: $page) {
       info {
-        count
+        ...info
       }
       results {
         id
@@ -374,6 +469,7 @@ export const LocationsDocument = gql`
       }
     }
   }
+  ${InfoFragmentDoc}
 `
 
 /**

@@ -7,3 +7,9 @@ export const charactersField = gql`
     image
   }
 `
+
+export const infoField = gql`
+  fragment info on Info {
+    count
+  }
+`
