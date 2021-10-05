@@ -13,3 +13,11 @@ export const infoField = gql`
     count
   }
 `
+
+export const episodeField = gql`
+  fragment episode on Episode {
+    name
+    episode
+    air_date
+  }
+`
