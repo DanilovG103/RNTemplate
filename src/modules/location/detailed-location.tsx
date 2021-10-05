@@ -9,6 +9,8 @@ import { colors } from 'src/theme/colors'
 import { CharacterCard } from 'src/ui/character-card'
 import { DetailedContainer } from 'src/ui/detailed-container'
 
+import { Params } from './types'
+
 const Residents = styled.Text`
   align-self: flex-start;
   font-size: 20px;
@@ -29,12 +31,14 @@ const EmptyDataWrapper = styled.View`
 
 export const DetailedLocation = () => {
   const navigation = useNavigation()
-  const route = useRoute()
-  const { data } = useLocationQuery({ variables: { id: route?.params?.id } })
+  const { params } = useRoute()
+  const { data } = useLocationQuery({
+    variables: { id: (params as Params).id },
+  })
 
   useEffect(() => {
-    navigation.setOptions({ title: route?.params?.name })
-  }, [navigation, route])
+    navigation.setOptions({ title: (params as Params).name })
+  }, [navigation, params])
 
   const EmptyData = () => (
     <EmptyDataWrapper>
@@ -44,9 +48,9 @@ export const DetailedLocation = () => {
 
   return (
     <DetailedContainer
-      title={data?.location?.name}
-      firstInfo={data?.location?.type}
-      secondInfo={data?.location?.dimension}>
+      title={data?.location?.name ?? ''}
+      firstInfo={data?.location?.type ?? ''}
+      secondInfo={data?.location?.dimension ? ''}>
       <Residents>Residents</Residents>
       <FlatList
         data={data?.location?.residents}

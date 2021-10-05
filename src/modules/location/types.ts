@@ -1,5 +1,4 @@
-import { Location } from 'src/generated/graphql'
-
-export interface LocationRenderProps {
-  item: Location | null
+export interface Params {
+  id: string
+  name: string
 }

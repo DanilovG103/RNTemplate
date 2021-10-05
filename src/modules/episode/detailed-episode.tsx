@@ -9,6 +9,8 @@ import { colors } from 'src/theme/colors'
 import { CharacterCard } from 'src/ui/character-card'
 import { DetailedContainer } from 'src/ui/detailed-container'
 
+import { Params } from './types'
+
 const Characters = styled.Text`
   align-self: flex-start;
   font-size: 20px;
@@ -19,20 +21,22 @@ const Characters = styled.Text`
 
 export const DetailedEpisode = () => {
   const navigation = useNavigation()
-  const route = useRoute()
-  const { data } = useEpisodeQuery({ variables: { id: route.params?.id } })
+  const { params } = useRoute()
+  const { data } = useEpisodeQuery({
+    variables: { id: (params as Params).id },
+  })
 
   useEffect(() => {
     navigation.setOptions({
-      title: route.params?.title,
+      title: (params as Params).title,
     })
-  }, [route, navigation])
+  }, [params, navigation])
 
   return (
     <DetailedContainer
-      title={data?.episode?.name}
-      firstInfo={data?.episode?.air_date}
-      secondInfo={data?.episode?.episode}>
+      title={data?.episode?.name ?? ''}
+      firstInfo={data?.episode?.air_date ?? ''}
+      secondInfo={data?.episode?.episode ?? ''}>
       <Characters>Characters</Characters>
       <FlatList
         data={data?.episode?.characters}
