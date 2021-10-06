@@ -29,6 +29,10 @@ const EmptyDataWrapper = styled.View`
   margin: 25px;
 `
 
+const Wrapper = styled.View`
+  align-items: center;
+`
+
 export const DetailedLocation = () => {
   const navigation = useNavigation()
   const { params } = useRoute()
@@ -37,7 +41,7 @@ export const DetailedLocation = () => {
   })
 
   useEffect(() => {
-    navigation.setOptions({ title: (params as Params).name })
+    navigation.setOptions({ title: (params as Params).title })
   }, [navigation, params])
 
   const EmptyData = () => (
@@ -52,15 +56,17 @@ export const DetailedLocation = () => {
       firstInfo={data?.location?.type ?? ''}
       secondInfo={data?.location?.dimension ?? ''}>
       <Residents>Residents</Residents>
-      <FlatList
-        data={data?.location?.residents}
-        showsVerticalScrollIndicator={false}
-        keyExtractor={(item) => item?.id}
-        numColumns={2}
-        horizontal={false}
-        renderItem={({ item }) => <CharacterCard character={item} />}
-        ListEmptyComponent={EmptyData}
-      />
+      <Wrapper>
+        <FlatList
+          data={data?.location?.residents}
+          showsVerticalScrollIndicator={false}
+          keyExtractor={(item) => item?.id}
+          numColumns={2}
+          horizontal={false}
+          renderItem={({ item }) => <CharacterCard character={item} />}
+          ListEmptyComponent={EmptyData}
+        />
+      </Wrapper>
     </DetailedContainer>
   )
 }
