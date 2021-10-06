@@ -30,6 +30,7 @@ const Date = styled(EpisodeTitle)`
 
 const Card = styled.TouchableOpacity`
   border-bottom-width: 1px;
+  border-bottom-color: ${colors.gray[6]};
   flex-direction: row;
   padding: 8px;
   align-items: center;
