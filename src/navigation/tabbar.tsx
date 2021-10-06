@@ -4,9 +4,8 @@ import { CharacterIcon } from 'assets/images/icons/Character'
 import { EpisodeIcon } from 'assets/images/icons/Episode'
 import { LocationIcon } from 'assets/images/icons/Location'
 
-import { CharacterScreen } from 'src/modules/character'
-
 import { colors } from '../theme/colors'
+import { CharacterStack } from './character-stack'
 import { EpisodeStack } from './episode-stack'
 import { LocationStack } from './location-stack'
 import { Routes } from './routes'
@@ -21,8 +20,8 @@ export const TabBar = () => {
         tabBarActiveTintColor: colors.indigo,
       }}>
       <Tab.Screen
-        name={Routes.CharacterScreen}
-        component={CharacterScreen}
+        name={Routes.CharacterStack}
+        component={CharacterStack}
         options={{
           tabBarLabel: 'Characters',
           tabBarIcon: ({ focused }) => <CharacterIcon focused={focused} />,
