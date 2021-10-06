@@ -30,11 +30,16 @@ export const DetailedEpisode = () => {
     variables: { id: (params as Params).id },
   })
 
+  const title =
+    (params as Params).title.length > 15
+      ? `${(params as Params).title.slice(0, 15)}...`
+      : (params as Params).title
+
   useEffect(() => {
     navigation.setOptions({
-      title: `${(params as Params).title.slice(0, 15)}...`,
+      title,
     })
-  }, [params, navigation])
+  }, [title, navigation])
 
   return (
     <DetailedContainer

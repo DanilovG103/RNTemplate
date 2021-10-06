@@ -40,11 +40,16 @@ export const DetailedLocation = () => {
     variables: { id: (params as Params).id },
   })
 
+  const title =
+    (params as Params).title.length > 15
+      ? `${(params as Params).title.slice(0, 15)}...`
+      : (params as Params).title
+
   useEffect(() => {
     navigation.setOptions({
-      title: `${(params as Params).title.slice(0, 15)}...`,
+      title,
     })
-  }, [navigation, params])
+  }, [navigation, title])
 
   const EmptyData = () => (
     <EmptyDataWrapper>

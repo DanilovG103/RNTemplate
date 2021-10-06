@@ -35,9 +35,14 @@ export const DetailedCharacter = () => {
     variables: { id: (params as Params).id },
   })
 
+  const title =
+    (params as Params).title.length > 15
+      ? `${(params as Params).title.slice(0, 15)}...`
+      : (params as Params).title
+
   useEffect(() => {
-    setOptions({ title: (params as Params).title })
-  }, [setOptions, params])
+    setOptions({ title })
+  }, [setOptions, title])
 
   return (
     <DetailedContainer
