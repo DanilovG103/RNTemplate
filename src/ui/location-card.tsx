@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components/native'
 
-import { Location } from 'src/generated/graphql'
+import { Location, LocationFieldFragment } from 'src/generated/graphql'
 import { Routes, useNavigation } from 'src/navigation/routes'
 import { colors } from 'src/theme/colors'
 
@@ -24,7 +24,7 @@ const LocationName = styled.Text`
   font-family: Montserrat-SemiBold;
 `
 interface Props {
-  location: Location | null
+  location: LocationFieldFragment
 }
 
 export const LocationCard = ({ location }: Props) => {

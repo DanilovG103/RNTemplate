@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components/native'
 
-import { Character } from 'src/generated/graphql'
+import { CharactersFragment } from 'src/generated/graphql'
 import { colors } from 'src/theme/colors'
 
 const Card = styled.View`
@@ -35,16 +35,16 @@ const InfoBlock = styled.View`
 `
 
 interface Props {
-  character: Character
+  character: CharactersFragment
 }
 
 export const CharacterCard = ({ character }: Props) => {
   return (
     <Card>
-      <Image source={{ uri: character.image }} />
+      <Image source={{ uri: character?.image }} />
       <InfoBlock>
-        <Status>{character.status}</Status>
-        <Name>{character.name}</Name>
+        <Status>{character?.status}</Status>
+        <Name>{character?.name}</Name>
       </InfoBlock>
     </Card>
   )

@@ -5,9 +5,9 @@ import { EpisodeIcon } from 'assets/images/icons/Episode'
 import { LocationIcon } from 'assets/images/icons/Location'
 
 import { CharacterScreen } from 'src/modules/character'
-import { EpisodeScreen } from 'src/modules/episode'
 
 import { colors } from '../theme/colors'
+import { EpisodeStack } from './episode-stack'
 import { LocationStack } from './location-stack'
 import { Routes } from './routes'
 
@@ -37,8 +37,8 @@ export const TabBar = () => {
         }}
       />
       <Tab.Screen
-        name={Routes.EpisodeScreen}
-        component={EpisodeScreen}
+        name={Routes.EpisodeStack}
+        component={EpisodeStack}
         options={{
           tabBarLabel: 'Episode',
           tabBarIcon: ({ focused }) => <EpisodeIcon focused={focused} />,

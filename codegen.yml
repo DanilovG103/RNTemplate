@@ -8,4 +8,5 @@ generates:
       - 'typescript-operations'
       - 'typescript-react-apollo'
     config:
+      maybeValue: T
       avoidOptionals: true
