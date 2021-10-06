@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { FlatList, SafeAreaView, View, VirtualizedList } from 'react-native'
+import { FlatList, SafeAreaView } from 'react-native'
 import { useRoute } from '@react-navigation/core'
 import styled from 'styled-components/native'
 
@@ -18,6 +18,13 @@ const Info = styled.Text`
   font-family: Montserrat-Bold;
   margin: 15px 20px 0;
   color: ${colors.gray[5]};
+`
+
+const Line = styled.View`
+  background: ${colors.gray[6]};
+  height: 1px;
+  width: 100%;
+  margin: 15px 0 8px;
 `
 
 export const DetailedCharacter = () => {
@@ -39,16 +46,18 @@ export const DetailedCharacter = () => {
       secondInfo={data?.character.species ?? ''}
       title={data?.character.name ?? ''}>
       <Info>Informations</Info>
+      <Line />
       <CharacterInfo info={data} />
+      <Line />
       <Info>Episodes</Info>
-      <SafeAreaView style={{ flex: 1 }}>
-        <FlatList
-          data={data?.character.episode}
-          renderItem={({ item }) => <EpisodeCard episode={item} />}
-          keyExtractor={(item) => item.id}
-          showsVerticalScrollIndicator={false}
-        />
-      </SafeAreaView>
+      <Line />
+      <FlatList
+        data={data?.character.episode}
+        renderItem={({ item }) => <EpisodeCard episode={item} />}
+        keyExtractor={(item) => item.id}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingHorizontal: 15 }}
+      />
     </DetailedContainer>
   )
 }
