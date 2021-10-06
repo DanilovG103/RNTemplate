@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import { LocationScreen } from 'src/modules/location'
 import { DetailedLocation } from 'src/modules/location/detailed-location'
-import { Header } from 'src/ui/header'
+import { Header } from 'src/ui/header-left'
 
 import { Routes } from './routes'
 

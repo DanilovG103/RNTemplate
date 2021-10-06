@@ -16,7 +16,7 @@ const BackText = styled.Text`
   margin: 0 8px;
 `
 
-export const Header = () => {
+export const HeaderLeft = () => {
   const { goBack } = useNavigation()
 
   return (

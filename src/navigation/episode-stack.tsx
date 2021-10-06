@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import { EpisodeScreen } from 'src/modules/episode'
 import { DetailedEpisode } from 'src/modules/episode/detailed-episode'
-import { Header } from 'src/ui/header'
+import { Header } from 'src/ui/header-left'
 
 import { Routes } from './routes'
 
