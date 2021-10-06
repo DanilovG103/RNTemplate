@@ -39,7 +39,7 @@ export const LocationCard = ({ location }: Props) => {
         })
       }>
       <Type>{location?.type}</Type>
-      <LocationName numberOfLines={2}>{location?.name}</LocationName>
+      <LocationName numberOfLines={1}>{location?.name}</LocationName>
     </Card>
   )
 }
