@@ -43,9 +43,12 @@ export const EpisodeCard = ({ episode }: Props) => {
   return (
     <Card
       onPress={() =>
-        navigate(Routes.DetailedEpisode, {
-          id: episode.id,
-          title: episode.name,
+        navigate(Routes.EpisodeStack, {
+          screen: Routes.DetailedEpisode,
+          params: {
+            id: episode.id,
+            title: episode.name,
+          },
         })
       }>
       <View>

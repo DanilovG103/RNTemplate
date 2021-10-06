@@ -45,9 +45,12 @@ export const CharacterCard = ({ character }: Props) => {
   return (
     <Card
       onPress={() => {
-        navigate(Routes.DetailedCharacter, {
-          id: character.id,
-          title: character.name,
+        navigate(Routes.CharacterStack, {
+          screen: Routes.DetailedCharacter,
+          params: {
+            id: character.id,
+            title: character.name,
+          },
         })
       }}>
       <Image source={{ uri: character?.image }} />

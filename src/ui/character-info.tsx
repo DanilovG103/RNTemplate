@@ -53,7 +53,16 @@ export const CharacterInfo = ({ info }: Props) => {
       <InfoTitle>Type</InfoTitle>
       <InfoDescription>{info?.character.type || 'Unknown'}</InfoDescription>
       <Line />
-      <LocationBlock onPress={() => navigate(Routes.DetailedLocation)}>
+      <LocationBlock
+        onPress={() =>
+          navigate(Routes.LocationStack, {
+            screen: Routes.DetailedLocation,
+            params: {
+              id: info?.character.location.id,
+              title: info?.character.location.name,
+            },
+          })
+        }>
         <View>
           <InfoTitle>Location</InfoTitle>
           <InfoDescription>{info?.character.location.name}</InfoDescription>
