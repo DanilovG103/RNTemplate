@@ -1,20 +1,19 @@
 import { gql } from '@apollo/client'
 
 import { charactersField, infoField } from '../fragments'
+import { locationField } from './../fragments'
 
 const getLocations = gql`
   ${infoField}
+  ${locationField}
   query Locations($page: Int) {
     locations(page: $page) {
       info {
         ...infoField
       }
       results {
-        id
-        name
-        type
+        ...locationField
         created
-        dimension
         residents {
           name
         }
@@ -25,11 +24,10 @@ const getLocations = gql`
 
 const getLocation = gql`
   ${charactersField}
+  ${locationField}
   query Location($id: ID!) {
     location(id: $id) {
-      name
-      type
-      dimension
+      ...locationField
       residents {
         ...characters
       }
