@@ -41,7 +41,9 @@ export const DetailedLocation = () => {
   })
 
   useEffect(() => {
-    navigation.setOptions({ title: (params as Params).title })
+    navigation.setOptions({
+      title: `${(params as Params).title.slice(0, 15)}...`,
+    })
   }, [navigation, params])
 
   const EmptyData = () => (

@@ -32,7 +32,7 @@ export const DetailedEpisode = () => {
 
   useEffect(() => {
     navigation.setOptions({
-      title: (params as Params).title,
+      title: `${(params as Params).title.slice(0, 15)}...`,
     })
   }, [params, navigation])
 
