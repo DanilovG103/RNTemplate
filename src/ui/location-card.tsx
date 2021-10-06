@@ -35,7 +35,7 @@ export const LocationCard = ({ location }: Props) => {
       onPress={() =>
         navigation.navigate(Routes.DetailedLocation, {
           id: location?.id,
-          name: location?.name,
+          title: location?.name,
         })
       }>
       <Type>{location?.type}</Type>
