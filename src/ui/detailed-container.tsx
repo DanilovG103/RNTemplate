@@ -3,10 +3,9 @@ import styled from 'styled-components/native'
 
 import { colors } from 'src/theme/colors'
 
-const Background = styled.View`
+const Background = styled.ScrollView`
   background: ${colors.gray[4]};
   flex: 1;
-  align-items: center;
 `
 
 const Block = styled.View`
@@ -35,7 +34,16 @@ const SecondAdditionalInfo = styled.Text`
   font-family: Montserrat-SemiBold;
 `
 
+const Image = styled.Image`
+  width: 130px;
+  height: 130px;
+  border-radius: 65px;
+  margin-bottom: 8px;
+  resize-mode: contain;
+`
+
 interface Props {
+  imageUri?: string
   firstInfo: string
   secondInfo: string
   title: string
@@ -43,6 +51,7 @@ interface Props {
 }
 
 export const DetailedContainer = ({
+  imageUri,
   firstInfo,
   secondInfo,
   title,
@@ -51,6 +60,7 @@ export const DetailedContainer = ({
   return (
     <Background>
       <Block>
+        {imageUri ? <Image source={{ uri: imageUri }} /> : null}
         <FirstAdditionalInfo>{firstInfo}</FirstAdditionalInfo>
         <Title>{title}</Title>
         <SecondAdditionalInfo>{secondInfo}</SecondAdditionalInfo>

@@ -2,9 +2,10 @@ import React from 'react'
 import styled from 'styled-components/native'
 
 import { CharactersFragment } from 'src/generated/graphql'
+import { Routes, useNavigation } from 'src/navigation/routes'
 import { colors } from 'src/theme/colors'
 
-const Card = styled.View`
+const Card = styled.TouchableOpacity`
   border-radius: 8px;
   margin: 7px;
   padding-bottom: 5px;
@@ -39,8 +40,16 @@ interface Props {
 }
 
 export const CharacterCard = ({ character }: Props) => {
+  const { navigate } = useNavigation()
+
   return (
-    <Card>
+    <Card
+      onPress={() => {
+        navigate(Routes.DetailedCharacter, {
+          id: character.id,
+          title: character.name,
+        })
+      }}>
       <Image source={{ uri: character?.image }} />
       <InfoBlock>
         <Status>{character?.status}</Status>
