@@ -19,6 +19,10 @@ const Characters = styled.Text`
   color: ${colors.gray[5]};
 `
 
+const Wrapper = styled.View`
+  align-items: center;
+`
+
 export const DetailedEpisode = () => {
   const navigation = useNavigation()
   const { params } = useRoute()
@@ -38,14 +42,16 @@ export const DetailedEpisode = () => {
       firstInfo={data?.episode?.air_date ?? ''}
       secondInfo={data?.episode?.episode ?? ''}>
       <Characters>Characters</Characters>
-      <FlatList
-        data={data?.episode?.characters}
-        horizontal={false}
-        showsVerticalScrollIndicator={false}
-        numColumns={2}
-        keyExtractor={(item) => item?.id}
-        renderItem={({ item }) => <CharacterCard character={item} />}
-      />
+      <Wrapper>
+        <FlatList
+          data={data?.episode?.characters}
+          horizontal={false}
+          showsVerticalScrollIndicator={false}
+          numColumns={2}
+          keyExtractor={(item) => item?.id}
+          renderItem={({ item }) => <CharacterCard character={item} />}
+        />
+      </Wrapper>
     </DetailedContainer>
   )
 }
