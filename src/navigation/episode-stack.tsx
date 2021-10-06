@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import { EpisodeScreen } from 'src/modules/episode'
 import { DetailedEpisode } from 'src/modules/episode/detailed-episode'
-import { Header } from 'src/ui/header-left'
+import { BackButton } from 'src/ui/back-button'
 
 import { Routes } from './routes'
 
@@ -18,7 +18,7 @@ export const EpisodeStack = () => {
         component={DetailedEpisode}
         options={{
           headerTitleAlign: 'center',
-          headerLeft: () => <Header />,
+          headerLeft: () => <BackButton />,
         }}
       />
     </Episode.Navigator>

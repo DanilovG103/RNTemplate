@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import { LocationScreen } from 'src/modules/location'
 import { DetailedLocation } from 'src/modules/location/detailed-location'
-import { Header } from 'src/ui/header-left'
+import { BackButton } from 'src/ui/back-button'
 
 import { Routes } from './routes'
 
@@ -21,7 +21,7 @@ export const LocationStack = () => {
         component={DetailedLocation}
         options={{
           headerTitleAlign: 'center',
-          headerLeft: () => <Header />,
+          headerLeft: () => <BackButton />,
         }}
       />
     </Location.Navigator>
