@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { FlatList } from 'react-native'
+import { ActivityIndicator, FlatList } from 'react-native'
 import { useRoute } from '@react-navigation/core'
 import styled from 'styled-components/native'
 
@@ -36,7 +36,7 @@ const Wrapper = styled.View`
 export const DetailedLocation = () => {
   const navigation = useNavigation()
   const { params } = useRoute()
-  const { data } = useLocationQuery({
+  const { data, loading } = useLocationQuery({
     variables: { id: (params as Params).id },
   })
 
@@ -50,6 +50,10 @@ export const DetailedLocation = () => {
       title,
     })
   }, [navigation, title])
+
+  if (loading) {
+    return <ActivityIndicator color={colors.indigo} size="large" />
+  }
 
   const EmptyData = () => (
     <EmptyDataWrapper>

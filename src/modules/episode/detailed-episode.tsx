@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { FlatList } from 'react-native'
+import { ActivityIndicator, FlatList } from 'react-native'
 import { useRoute } from '@react-navigation/core'
 import styled from 'styled-components/native'
 
@@ -26,7 +26,7 @@ const Wrapper = styled.View`
 export const DetailedEpisode = () => {
   const navigation = useNavigation()
   const { params } = useRoute()
-  const { data } = useEpisodeQuery({
+  const { data, loading } = useEpisodeQuery({
     variables: { id: (params as Params).id },
   })
 
@@ -40,6 +40,10 @@ export const DetailedEpisode = () => {
       title,
     })
   }, [title, navigation])
+
+  if (loading) {
+    return <ActivityIndicator color={colors.indigo} size="large" />
+  }
 
   return (
     <DetailedContainer

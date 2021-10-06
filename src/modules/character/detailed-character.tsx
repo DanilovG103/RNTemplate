@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { FlatList, SafeAreaView } from 'react-native'
+import { ActivityIndicator, FlatList, SafeAreaView } from 'react-native'
 import { useRoute } from '@react-navigation/core'
 import styled from 'styled-components/native'
 
@@ -31,7 +31,7 @@ export const DetailedCharacter = () => {
   const { setOptions } = useNavigation()
   const { params } = useRoute()
 
-  const { data } = useCharacterQuery({
+  const { data, loading } = useCharacterQuery({
     variables: { id: (params as Params).id },
   })
 
@@ -43,6 +43,10 @@ export const DetailedCharacter = () => {
   useEffect(() => {
     setOptions({ title })
   }, [setOptions, title])
+
+  if (loading) {
+    return <ActivityIndicator color={colors.indigo} size="large" />
+  }
 
   return (
     <DetailedContainer
