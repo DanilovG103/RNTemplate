@@ -10,7 +10,7 @@ const Card = styled.TouchableOpacity`
   border-radius: 8px;
   margin: 5px;
   padding: 5px 15px 15px;
-  width: 160px;
+  width: 150px;
 `
 
 const Type = styled.Text`
@@ -39,7 +39,7 @@ export const LocationCard = ({ location }: Props) => {
         })
       }>
       <Type>{location?.type}</Type>
-      <LocationName numberOfLines={2}>{location?.name}</LocationName>
+      <LocationName numberOfLines={1}>{location?.name}</LocationName>
     </Card>
   )
 }
