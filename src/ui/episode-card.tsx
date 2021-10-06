@@ -3,12 +3,12 @@ import { View } from 'react-native'
 import { Arrow } from 'assets/images/icons/Arrow'
 import styled from 'styled-components/native'
 
-import { Episode } from 'src/generated/graphql'
+import { EpisodeFragment } from 'src/generated/graphql'
 import { Routes, useNavigation } from 'src/navigation/routes'
 import { colors } from 'src/theme/colors'
 
 interface Props {
-  episode: Episode
+  episode: EpisodeFragment
 }
 
 const EpisodeTitle = styled.Text`

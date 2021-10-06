@@ -50,7 +50,7 @@ export const DetailedLocation = () => {
     <DetailedContainer
       title={data?.location?.name ?? ''}
       firstInfo={data?.location?.type ?? ''}
-      secondInfo={data?.location?.dimension ? ''}>
+      secondInfo={data?.location?.dimension ?? ''}>
       <Residents>Residents</Residents>
       <FlatList
         data={data?.location?.residents}
