@@ -283,6 +283,15 @@ export type CharacterQuery = {
       type: Maybe<string>
       dimension: Maybe<string>
     }>
+    episode: Array<
+      Maybe<{
+        __typename?: 'Episode'
+        id: Maybe<string>
+        name: Maybe<string>
+        episode: Maybe<string>
+        air_date: Maybe<string>
+      }>
+    >
   }>
 }
 
@@ -496,10 +505,14 @@ export const CharacterDocument = gql`
       location {
         ...locationField
       }
+      episode {
+        ...episode
+      }
     }
   }
   ${DetailedCharacterFragmentDoc}
   ${LocationFieldFragmentDoc}
+  ${EpisodeFragmentDoc}
 `
 
 /**
