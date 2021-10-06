@@ -35,6 +35,9 @@ const getCharacter = gql`
       episode {
         ...episode
       }
+      origin {
+        name
+      }
     }
   }
 `

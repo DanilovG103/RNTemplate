@@ -292,6 +292,7 @@ export type CharacterQuery = {
         air_date: Maybe<string>
       }>
     >
+    origin: Maybe<{ __typename?: 'Location'; name: Maybe<string> }>
   }>
 }
 
@@ -507,6 +508,9 @@ export const CharacterDocument = gql`
       }
       episode {
         ...episode
+      }
+      origin {
+        name
       }
     }
   }
