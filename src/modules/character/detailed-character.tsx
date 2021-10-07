@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { ActivityIndicator, FlatList, SafeAreaView } from 'react-native'
+import { ActivityIndicator, FlatList } from 'react-native'
 import { useRoute } from '@react-navigation/core'
 import styled from 'styled-components/native'
 
@@ -10,6 +10,7 @@ import { CharacterInfo } from 'src/ui/character-info'
 import { DetailedContainer } from 'src/ui/detailed-container'
 import { EpisodeCard } from 'src/ui/episode-card'
 
+import { formatTitle } from '../functions/format-title'
 import { Params } from './types'
 
 const Info = styled.Text`
@@ -35,10 +36,7 @@ export const DetailedCharacter = () => {
     variables: { id: (params as Params).id },
   })
 
-  const title =
-    (params as Params).title.length > 15
-      ? `${(params as Params).title.slice(0, 15)}...`
-      : (params as Params).title
+  const title = formatTitle((params as Params).title)
 
   useEffect(() => {
     setOptions({ title })

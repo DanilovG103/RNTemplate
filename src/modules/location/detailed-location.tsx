@@ -9,6 +9,7 @@ import { colors } from 'src/theme/colors'
 import { CharacterCard } from 'src/ui/character-card'
 import { DetailedContainer } from 'src/ui/detailed-container'
 
+import { formatTitle } from '../functions/format-title'
 import { Params } from './types'
 
 const Residents = styled.Text`
@@ -40,10 +41,7 @@ export const DetailedLocation = () => {
     variables: { id: (params as Params).id },
   })
 
-  const title =
-    (params as Params).title.length > 15
-      ? `${(params as Params).title.slice(0, 15)}...`
-      : (params as Params).title
+  const title = formatTitle((params as Params).title)
 
   useEffect(() => {
     navigation.setOptions({
