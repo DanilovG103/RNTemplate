@@ -5,6 +5,7 @@ import styled from 'styled-components/native'
 
 import { colors } from 'src/theme/colors'
 
+import { InputName } from './input-name'
 import { ModalMenu } from './modal'
 
 const Wrapper = styled.TouchableOpacity`
@@ -76,6 +77,7 @@ const FilterBlockStart = styled.View`
 
 export const FilterHeader = () => {
   const [visible, setVisible] = useState(false)
+  const [inputVisible, setInputVisible] = useState(false)
 
   return (
     <Wrapper onPress={() => setVisible(true)}>
@@ -87,7 +89,7 @@ export const FilterHeader = () => {
             <Apply>APPLY</Apply>
           </ApplyBtn>
         </Row>
-        <FilterBlock>
+        <FilterBlock onPress={() => setInputVisible(true)}>
           <FilterBlockStart>
             <Circle />
             <View>
@@ -107,6 +109,7 @@ export const FilterHeader = () => {
           </FilterBlockStart>
           <Arrow />
         </FilterBlock>
+        <InputName visible={inputVisible} setVisible={setInputVisible} />
       </ModalMenu>
     </Wrapper>
   )
