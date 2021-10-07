@@ -1,7 +1,8 @@
 import React, { FC } from 'react'
 import Modal from 'react-native-modal'
-import { BlurView } from '@react-native-community/blur'
 import styled from 'styled-components/native'
+
+import { colors } from 'src/theme/colors'
 
 interface IModalMenu {
   showModal: boolean
@@ -18,10 +19,7 @@ const Container = styled.View`
   overflow: hidden;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-`
-
-const Blur = styled(BlurView)`
-  padding: 20px;
+  background-color: ${colors.white};
 `
 
 export const ModalMenu: FC<IModalMenu> = ({
@@ -44,9 +42,7 @@ export const ModalMenu: FC<IModalMenu> = ({
       backdropOpacity={0.1}
       useNativeDriver
       hideModalContentWhileAnimating>
-      <Container>
-        <Blur blurType={'regular'}>{children}</Blur>
-      </Container>
+      <Container>{children}</Container>
     </StyledModal>
   )
 }

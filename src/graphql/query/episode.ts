@@ -5,7 +5,7 @@ import { charactersField, episodeField, infoField } from '../fragments'
 export const getEpisodes = gql`
   ${infoField}
   ${episodeField}
-  query Episodes($page: Int) {
+  query Episodes($page: Int, $name: String, $episode: String) {
     episodes(page: $page) {
       info {
         ...infoField
