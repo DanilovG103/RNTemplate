@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import { KeyboardAvoidingView } from 'react-native'
 import Modal from 'react-native-modal'
 import styled from 'styled-components/native'
 
@@ -31,7 +32,6 @@ export const ModalMenu: FC<IModalMenu> = ({
 
   return (
     <StyledModal
-      avoidKeyboard={true}
       isVisible={showModal}
       onSwipeComplete={closeModal}
       onBackButtonPress={closeModal}
@@ -42,7 +42,9 @@ export const ModalMenu: FC<IModalMenu> = ({
       backdropOpacity={0.1}
       useNativeDriver
       hideModalContentWhileAnimating>
-      <Container>{children}</Container>
+      <KeyboardAvoidingView behavior="position" enabled>
+        <Container>{children}</Container>
+      </KeyboardAvoidingView>
     </StyledModal>
   )
 }
