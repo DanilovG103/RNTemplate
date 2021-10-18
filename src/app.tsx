@@ -2,9 +2,9 @@ import React from 'react'
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
 import { NavigationContainer } from '@react-navigation/native'
 
+import { FilterProvider } from 'src/context/FilterContext'
+import { AlertProvider } from 'src/modules/alert-context'
 import { RootNavigation } from 'src/navigation/root'
-
-import { AlertProvider } from './modules/alert-context'
 
 const client = new ApolloClient({
   uri: 'https://rickandmortyapi.com/graphql',
@@ -13,12 +13,14 @@ const client = new ApolloClient({
 
 export const App = () => {
   return (
-    <ApolloProvider client={client}>
-      <AlertProvider>
-        <NavigationContainer>
-          <RootNavigation />
-        </NavigationContainer>
-      </AlertProvider>
-    </ApolloProvider>
+    <FilterProvider>
+      <ApolloProvider client={client}>
+        <AlertProvider>
+          <NavigationContainer>
+            <RootNavigation />
+          </NavigationContainer>
+        </AlertProvider>
+      </ApolloProvider>
+    </FilterProvider>
   )
 }

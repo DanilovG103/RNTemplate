@@ -30,17 +30,17 @@ interface Props {
   setVisible: (value: boolean) => void
 }
 
-export const InputName = ({ visible, setVisible }: Props) => {
-  const { setName } = useFilterUpdate()
+export const EpisodeFilter = ({ visible, setVisible }: Props) => {
+  const { setEpisode } = useFilterUpdate()
 
   return (
     <ModalMenu showModal={visible} setShowModal={setVisible}>
       <Wrapper>
-        <Title>Name</Title>
+        <Title>Episode</Title>
         <Input
           placeholder="Search"
           placeholderTextColor={colors.gray[0]}
-          onChangeText={(value) => setName(value)}
+          onChangeText={(value) => setEpisode(value)}
         />
       </Wrapper>
     </ModalMenu>
