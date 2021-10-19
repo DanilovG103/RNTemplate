@@ -7,10 +7,10 @@ import { Container } from 'src/ui/container'
 import { EpisodeCard } from 'src/ui/episode-card'
 
 export const EpisodeScreen = () => {
-  const { name } = useFilter()
+  const { name, episode } = useFilter()
   const [page, setPage] = useState(1)
   const { data, fetchMore } = useEpisodesQuery({
-    variables: { page: 1, name, episode: '' },
+    variables: { page: 1, name, episode },
   })
 
   const limit = data?.episodes?.results?.length === data?.episodes?.info?.count
