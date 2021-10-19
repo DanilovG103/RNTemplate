@@ -13,6 +13,8 @@ import { ModalMenu } from './modal'
 
 const Wrapper = styled.TouchableOpacity`
   align-self: flex-end;
+  flex-direction: row;
+  align-items: center;
   margin: 15px;
 `
 
@@ -73,6 +75,14 @@ const Circle = styled.View<{ isSelected: boolean }>`
     props.isSelected ? colors.indigo : colors.white};
 `
 
+const FilterSelected = styled.View`
+  width: 12px;
+  height: 12px;
+  background: ${colors.indigo};
+  border-radius: 6px;
+  margin-right: 5px;
+`
+
 const FilterBlockStart = styled.View`
   flex-direction: row;
   align-items: center;
@@ -86,9 +96,12 @@ export const FilterHeader = () => {
   const { name, episode } = useFilter()
   const { clearFilter } = useFilterUpdate()
 
+  const filtersSelected = name.length !== 0 || episode.length !== 0
+
   return (
     <SafeAreaView>
       <Wrapper onPress={() => setVisible(true)}>
+        {filtersSelected && <FilterSelected />}
         <HeaderTitle>Filter</HeaderTitle>
         <ModalMenu showModal={visible} setShowModal={setVisible}>
           <Row>
