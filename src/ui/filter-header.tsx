@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { TouchableOpacity, View } from 'react-native'
+import { SafeAreaView } from 'react-native'
 import { Arrow } from 'assets/images/icons/Arrow'
 import styled from 'styled-components/native'
 
@@ -86,44 +87,46 @@ export const FilterHeader = () => {
   const { clearFilter } = useFilterUpdate()
 
   return (
-    <Wrapper onPress={() => setVisible(true)}>
-      <HeaderTitle>Filter</HeaderTitle>
-      <ModalMenu showModal={visible} setShowModal={setVisible}>
-        <Row>
-          <TouchableOpacity onPress={clearFilter}>
-            <HeaderTitle>Clear</HeaderTitle>
-          </TouchableOpacity>
-          <ModalTitle>Filter</ModalTitle>
-          <ApplyBtn>
-            <Apply>APPLY</Apply>
-          </ApplyBtn>
-        </Row>
-        <FilterBlock onPress={() => setInputVisible(true)}>
-          <FilterBlockStart>
-            <Circle isSelected={!!name} />
-            <View>
-              <FilterText>Name</FilterText>
-              <FilterDescription>Give a name</FilterDescription>
-            </View>
-          </FilterBlockStart>
-          <Arrow />
-        </FilterBlock>
-        <FilterBlock onPress={() => setEpisodeVisible(true)}>
-          <FilterBlockStart>
-            <Circle isSelected={!!episode} />
-            <View>
-              <FilterText>Episode</FilterText>
-              <FilterDescription>Select one</FilterDescription>
-            </View>
-          </FilterBlockStart>
-          <Arrow />
-        </FilterBlock>
-        <InputName visible={inputVisible} setVisible={setInputVisible} />
-        <EpisodeFilter
-          visible={episodeVisible}
-          setVisible={setEpisodeVisible}
-        />
-      </ModalMenu>
-    </Wrapper>
+    <SafeAreaView>
+      <Wrapper onPress={() => setVisible(true)}>
+        <HeaderTitle>Filter</HeaderTitle>
+        <ModalMenu showModal={visible} setShowModal={setVisible}>
+          <Row>
+            <TouchableOpacity onPress={clearFilter}>
+              <HeaderTitle>Clear</HeaderTitle>
+            </TouchableOpacity>
+            <ModalTitle>Filter</ModalTitle>
+            <ApplyBtn>
+              <Apply>APPLY</Apply>
+            </ApplyBtn>
+          </Row>
+          <FilterBlock onPress={() => setInputVisible(true)}>
+            <FilterBlockStart>
+              <Circle isSelected={!!name} />
+              <View>
+                <FilterText>Name</FilterText>
+                <FilterDescription>Give a name</FilterDescription>
+              </View>
+            </FilterBlockStart>
+            <Arrow />
+          </FilterBlock>
+          <FilterBlock onPress={() => setEpisodeVisible(true)}>
+            <FilterBlockStart>
+              <Circle isSelected={!!episode} />
+              <View>
+                <FilterText>Episode</FilterText>
+                <FilterDescription>Select one</FilterDescription>
+              </View>
+            </FilterBlockStart>
+            <Arrow />
+          </FilterBlock>
+          <InputName visible={inputVisible} setVisible={setInputVisible} />
+          <EpisodeFilter
+            visible={episodeVisible}
+            setVisible={setEpisodeVisible}
+          />
+        </ModalMenu>
+      </Wrapper>
+    </SafeAreaView>
   )
 }
