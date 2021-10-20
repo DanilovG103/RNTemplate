@@ -7,7 +7,7 @@ import { Container } from 'src/ui/container'
 import { EpisodeCard } from 'src/ui/episode-card'
 
 export const EpisodeScreen = () => {
-  const { name, episode } = useFilter()
+  const { episodeName: name, episode } = useFilter()
   const [page, setPage] = useState(1)
   const { data, fetchMore } = useEpisodesQuery({
     variables: { page: 1, name, episode },

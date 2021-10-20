@@ -1,7 +1,10 @@
 import React, { createContext, useContext, useState } from 'react'
 
 const initialState = {
-  name: '',
+  locationName: '',
+  locationType: '',
+  locationDimension: '',
+  episodeName: '',
   episode: '',
 }
 
@@ -16,17 +19,42 @@ interface Props {
 }
 
 export const FilterProvider = ({ children }: Props) => {
-  const [name, setName] = useState('')
+  const [locationName, setLocationName] = useState('')
+  const [locationType, setLocationType] = useState('')
+  const [locationDimension, setLocationDimension] = useState('')
+  const [episodeName, setEpisodeName] = useState('')
   const [episode, setEpisode] = useState('')
 
-  const clearFilter = () => {
-    setName('')
+  const clearEpisodeFilter = () => {
+    setEpisodeName('')
     setEpisode('')
   }
 
+  const clearLocationFilter = () => {
+    setLocationName('')
+    setLocationType('')
+    setLocationDimension('')
+  }
+
   return (
-    <FilterContext.Provider value={{ name, episode }}>
-      <FilterUpdate.Provider value={{ setName, setEpisode, clearFilter }}>
+    <FilterContext.Provider
+      value={{
+        locationName,
+        locationType,
+        locationDimension,
+        episodeName,
+        episode,
+      }}>
+      <FilterUpdate.Provider
+        value={{
+          setLocationName,
+          setLocationType,
+          setLocationDimension,
+          setEpisodeName,
+          setEpisode,
+          clearEpisodeFilter,
+          clearLocationFilter,
+        }}>
         {children}
       </FilterUpdate.Provider>
     </FilterContext.Provider>

@@ -88,15 +88,15 @@ const FilterBlockStart = styled.View`
   align-items: center;
 `
 
-export const FilterHeader = () => {
+export const FilterEpisode = () => {
   const [visible, setVisible] = useState(false)
   const [inputVisible, setInputVisible] = useState(false)
   const [episodeVisible, setEpisodeVisible] = useState(false)
 
-  const { name, episode } = useFilter()
-  const { clearFilter } = useFilterUpdate()
+  const { episodeName, episode } = useFilter()
+  const { clearEpisodeFilter } = useFilterUpdate()
 
-  const filtersSelected = name.length !== 0 || episode.length !== 0
+  const filtersSelected = !!episodeName.length || !!episode.length
 
   return (
     <SafeAreaView>
@@ -105,7 +105,7 @@ export const FilterHeader = () => {
         <HeaderTitle>Filter</HeaderTitle>
         <ModalMenu showModal={visible} setShowModal={setVisible}>
           <Row>
-            <TouchableOpacity onPress={clearFilter}>
+            <TouchableOpacity onPress={clearEpisodeFilter}>
               <HeaderTitle>Clear</HeaderTitle>
             </TouchableOpacity>
             <ModalTitle>Filter</ModalTitle>
@@ -115,7 +115,7 @@ export const FilterHeader = () => {
           </Row>
           <FilterBlock onPress={() => setInputVisible(true)}>
             <FilterBlockStart>
-              <Circle isSelected={!!name} />
+              <Circle isSelected={!!episodeName} />
               <View>
                 <FilterText>Name</FilterText>
                 <FilterDescription>Give a name</FilterDescription>
@@ -133,7 +133,11 @@ export const FilterHeader = () => {
             </FilterBlockStart>
             <Arrow />
           </FilterBlock>
-          <InputName visible={inputVisible} setVisible={setInputVisible} />
+          <InputName
+            visible={inputVisible}
+            setVisible={setInputVisible}
+            type="episode"
+          />
           <EpisodeFilter
             visible={episodeVisible}
             setVisible={setEpisodeVisible}

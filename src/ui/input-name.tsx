@@ -1,48 +1,32 @@
 import React from 'react'
-import styled from 'styled-components/native'
 
 import { useFilterUpdate } from 'src/context/FilterContext'
-import { colors } from 'src/theme/colors'
 
-import { ModalMenu } from './modal'
-
-const Wrapper = styled.View`
-  margin: 15px;
-`
-
-const Title = styled.Text`
-  color: ${colors.black};
-  font-size: 17px;
-  font-family: Montserrat-SemiBold;
-  align-self: center;
-`
-
-const Input = styled.TextInput`
-  color: ${colors.black};
-  border-radius: 10px;
-  border: 1px solid ${colors.gray[6]};
-  margin-top: 10px;
-  padding: 5px 10px;
-`
+import { InputContainer } from './input-container'
 
 interface Props {
   visible: boolean
   setVisible: (value: boolean) => void
+  type: string
 }
 
-export const InputName = ({ visible, setVisible }: Props) => {
-  const { setName } = useFilterUpdate()
+export const InputName = ({ visible, setVisible, type }: Props) => {
+  const { setEpisodeName, setLocationName } = useFilterUpdate()
+
+  const setName = (value: string) => {
+    if (type === 'episode') {
+      setEpisodeName(value)
+    } else if (type === 'location') {
+      setLocationName(value)
+    }
+  }
 
   return (
-    <ModalMenu showModal={visible} setShowModal={setVisible}>
-      <Wrapper>
-        <Title>Name</Title>
-        <Input
-          placeholder="Search"
-          placeholderTextColor={colors.gray[0]}
-          onChangeText={(value) => setName(value)}
-        />
-      </Wrapper>
-    </ModalMenu>
+    <InputContainer
+      visible={visible}
+      setVisible={setVisible}
+      title="Name"
+      onChangeText={setName}
+    />
   )
 }

@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { EpisodeScreen } from 'src/modules/episode'
 import { DetailedEpisode } from 'src/modules/episode/detailed-episode'
 import { BackButton } from 'src/ui/back-button'
-import { FilterHeader } from 'src/ui/filter-header'
+import { FilterEpisode } from 'src/ui/filter-episodes'
 
 import { Routes } from './routes'
 
@@ -16,7 +16,7 @@ export const EpisodeStack = () => {
       <Episode.Screen
         name={Routes.EpisodeScreen}
         component={EpisodeScreen}
-        options={{ header: () => <FilterHeader /> }}
+        options={{ header: () => <FilterEpisode /> }}
       />
       <Episode.Screen
         name={Routes.DetailedEpisode}
