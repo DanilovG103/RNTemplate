@@ -1,18 +1,14 @@
 import React, { useState } from 'react'
 import { ActivityIndicator, FlatList } from 'react-native'
 
-import { useFilter } from 'src/context/FilterContext'
+import { useLocationsFilter } from 'src/context/location-filter'
 import { useLocationsQuery } from 'src/generated/graphql'
 import { Container } from 'src/ui/container'
 import { LocationCard } from 'src/ui/location-card'
 
 export const LocationScreen = () => {
   const [page, setPage] = useState(1)
-  const {
-    locationName: name,
-    locationType: type,
-    locationDimension: dimension,
-  } = useFilter()
+  const { name, type, dimension } = useLocationsFilter()
   const { data, fetchMore } = useLocationsQuery({
     variables: { page: 1, name, type, dimension },
   })

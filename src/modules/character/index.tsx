@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 import { ActivityIndicator, FlatList } from 'react-native'
 
+import { useCharactersFilter } from 'src/context/character-filter'
 import { useCharactersQuery } from 'src/generated/graphql'
 import { CharacterCard } from 'src/ui/character-card'
 import { Container } from 'src/ui/container'
 
 export const CharacterScreen = () => {
   const [page, setPage] = useState(1)
+  const { characterName: name, gender, status, species } = useCharactersFilter()
   const { data, fetchMore } = useCharactersQuery({
-    variables: { page: 1, name: '' },
+    variables: { page: 1, name, gender, status, species },
   })
 
   const loadMore = async () => {
