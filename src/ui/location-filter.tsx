@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useFilterUpdate } from 'src/context/FilterContext'
+import { useLocationsFilter } from 'src/context/location-filter'
 
 import { InputContainer } from './input-container'
 
@@ -11,14 +11,14 @@ interface Props {
 }
 
 export const LocationFilter = ({ visible, setVisible, filterType }: Props) => {
-  const { setLocationType, setLocationDimension } = useFilterUpdate()
+  const { setType, setDimension } = useLocationsFilter()
   const title = filterType === 'type' ? 'Type' : 'Dimension'
 
   const setFilter = (value: string) => {
     if (filterType === 'type') {
-      setLocationType(value)
+      setType(value)
     } else {
-      setLocationDimension(value)
+      setDimension(value)
     }
   }
 
