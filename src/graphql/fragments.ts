@@ -9,6 +9,16 @@ export const charactersField = gql`
   }
 `
 
+export const detailedCharacterField = gql`
+  ${charactersField}
+  fragment detailedCharacter on Character {
+    ...characters
+    species
+    gender
+    type
+  }
+`
+
 export const infoField = gql`
   fragment infoField on Info {
     count
