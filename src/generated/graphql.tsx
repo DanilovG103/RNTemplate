@@ -212,6 +212,9 @@ export type LocationFieldFragment = { __typename?: 'Location', id: Maybe<string>
 export type CharactersQueryVariables = Exact<{
   page: Maybe<Scalars['Int']>;
   name: Maybe<Scalars['String']>;
+  species: Maybe<Scalars['String']>;
+  gender: Maybe<Scalars['String']>;
+  status: Maybe<Scalars['String']>;
 }>;
 
 
@@ -280,8 +283,11 @@ export const LocationFieldFragmentDoc = gql`
 }
     `;
 export const CharactersDocument = gql`
-    query Characters($page: Int, $name: String) {
-  characters(page: $page, filter: {name: $name}) {
+    query Characters($page: Int, $name: String, $species: String, $gender: String, $status: String) {
+  characters(
+    page: $page
+    filter: {name: $name, status: $status, gender: $gender, species: $species}
+  ) {
     results {
       id
       name
@@ -310,6 +316,9 @@ export const CharactersDocument = gql`
  *   variables: {
  *      page: // value for 'page'
  *      name: // value for 'name'
+ *      species: // value for 'species'
+ *      gender: // value for 'gender'
+ *      status: // value for 'status'
  *   },
  * });
  */
