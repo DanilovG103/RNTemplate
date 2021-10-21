@@ -2,8 +2,7 @@ import React from 'react'
 import styled from 'styled-components/native'
 
 import { colors } from 'src/theme/colors'
-
-import { ModalMenu } from './modal'
+import { ModalMenu } from 'src/ui/modal'
 
 const Wrapper = styled.View`
   margin: 15px;

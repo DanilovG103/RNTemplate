@@ -1,23 +1,28 @@
 import React from 'react'
 
-import { useFilterUpdate } from 'src/context/FilterContext'
-
-import { InputContainer } from './input-container'
+import { useCharactersFilter } from 'src/context/character-filter'
+import { useEpisodesFilter } from 'src/context/episodes-filter'
+import { useLocationsFilter } from 'src/context/location-filter'
+import { InputContainer } from 'src/ui/input-container'
 
 interface Props {
   visible: boolean
   setVisible: (value: boolean) => void
-  type: string
+  type?: string
 }
 
 export const InputName = ({ visible, setVisible, type }: Props) => {
-  const { setEpisodeName, setLocationName } = useFilterUpdate()
+  const { setEpisodeName } = useEpisodesFilter()
+  const { setName } = useLocationsFilter()
+  const { setCharacterName } = useCharactersFilter()
 
-  const setName = (value: string) => {
+  const setSearchValue = (value: string) => {
     if (type === 'episode') {
       setEpisodeName(value)
     } else if (type === 'location') {
-      setLocationName(value)
+      setName(value)
+    } else {
+      setCharacterName(value)
     }
   }
 
@@ -26,7 +31,7 @@ export const InputName = ({ visible, setVisible, type }: Props) => {
       visible={visible}
       setVisible={setVisible}
       title="Name"
-      onChangeText={setName}
+      onChangeText={setSearchValue}
     />
   )
 }
