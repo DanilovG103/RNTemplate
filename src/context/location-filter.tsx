@@ -39,8 +39,20 @@ export const LocationsFilterProvider = ({ children }: Props) => {
       dimension,
       filtersSelected,
       clearFilter,
+      setName,
+      setType,
+      setDimension,
     }),
-    [name, type, dimension, filtersSelected, clearFilter],
+    [
+      name,
+      type,
+      dimension,
+      filtersSelected,
+      clearFilter,
+      setName,
+      setType,
+      setDimension,
+    ],
   )
 
   return <Filter.Provider value={value}>{children}</Filter.Provider>
