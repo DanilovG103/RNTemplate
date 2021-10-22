@@ -1,6 +1,14 @@
 import { gql } from '@apollo/client'
 
+import {
+  charactersField,
+  detailedCharacterField,
+  episodeField,
+  locationField,
+} from '../fragments'
+
 const getCharacters = gql`
+  ${charactersField}
   query Characters(
     $page: Int
     $name: String
@@ -18,11 +26,8 @@ const getCharacters = gql`
       }
     ) {
       results {
-        id
-        name
-        image
-        status
         gender
+        ...characters
         location {
           name
         }
@@ -31,4 +36,24 @@ const getCharacters = gql`
   }
 `
 
-export { getCharacters }
+const getCharacter = gql`
+  ${locationField}
+  ${detailedCharacterField}
+  ${episodeField}
+  query Character($id: ID!) {
+    character(id: $id) {
+      ...detailedCharacter
+      location {
+        ...locationField
+      }
+      episode {
+        ...episode
+      }
+      origin {
+        name
+      }
+    }
+  }
+`
+
+export { getCharacters, getCharacter }

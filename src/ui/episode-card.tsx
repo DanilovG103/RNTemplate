@@ -30,6 +30,7 @@ const Date = styled(EpisodeTitle)`
 
 const Card = styled.TouchableOpacity`
   border-bottom-width: 1px;
+  border-bottom-color: ${colors.gray[6]};
   flex-direction: row;
   padding: 8px;
   align-items: center;
@@ -42,9 +43,12 @@ export const EpisodeCard = ({ episode }: Props) => {
   return (
     <Card
       onPress={() =>
-        navigate(Routes.DetailedEpisode, {
-          id: episode.id,
-          title: episode.name,
+        navigate(Routes.EpisodeStack, {
+          screen: Routes.DetailedEpisode,
+          params: {
+            id: episode.id,
+            title: episode.name,
+          },
         })
       }>
       <View>

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { FlatList } from 'react-native'
+import { ActivityIndicator, FlatList } from 'react-native'
 import { useRoute } from '@react-navigation/core'
 import styled from 'styled-components/native'
 
@@ -9,6 +9,7 @@ import { colors } from 'src/theme/colors'
 import { CharacterCard } from 'src/ui/character-card'
 import { DetailedContainer } from 'src/ui/detailed-container'
 
+import { formatTitle } from '../functions/format-title'
 import { Params } from './types'
 
 const Characters = styled.Text`
@@ -19,18 +20,28 @@ const Characters = styled.Text`
   color: ${colors.gray[5]};
 `
 
+const Wrapper = styled.View`
+  align-items: center;
+`
+
 export const DetailedEpisode = () => {
   const navigation = useNavigation()
   const { params } = useRoute()
-  const { data } = useEpisodeQuery({
+  const { data, loading } = useEpisodeQuery({
     variables: { id: (params as Params).id },
   })
 
+  const title = formatTitle((params as Params).title)
+
   useEffect(() => {
     navigation.setOptions({
-      title: (params as Params).title,
+      title,
     })
-  }, [params, navigation])
+  }, [title, navigation])
+
+  if (loading) {
+    return <ActivityIndicator color={colors.indigo} size="large" />
+  }
 
   return (
     <DetailedContainer
@@ -38,14 +49,16 @@ export const DetailedEpisode = () => {
       firstInfo={data?.episode?.air_date ?? ''}
       secondInfo={data?.episode?.episode ?? ''}>
       <Characters>Characters</Characters>
-      <FlatList
-        data={data?.episode?.characters}
-        horizontal={false}
-        showsVerticalScrollIndicator={false}
-        numColumns={2}
-        keyExtractor={(item) => item?.id}
-        renderItem={({ item }) => <CharacterCard character={item} />}
-      />
+      <Wrapper>
+        <FlatList
+          data={data?.episode?.characters}
+          horizontal={false}
+          showsVerticalScrollIndicator={false}
+          numColumns={2}
+          keyExtractor={(item) => item?.id}
+          renderItem={({ item }) => <CharacterCard character={item} />}
+        />
+      </Wrapper>
     </DetailedContainer>
   )
 }
