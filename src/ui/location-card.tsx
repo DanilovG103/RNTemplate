@@ -28,14 +28,17 @@ interface Props {
 }
 
 export const LocationCard = ({ location }: Props) => {
-  const navigation = useNavigation()
+  const { navigate } = useNavigation()
 
   return (
     <Card
       onPress={() =>
-        navigation.navigate(Routes.DetailedLocation, {
-          id: location?.id,
-          title: location?.name,
+        navigate(Routes.LocationStack, {
+          screen: Routes.DetailedLocation,
+          params: {
+            id: location?.id,
+            title: location?.name,
+          },
         })
       }>
       <Type>{location?.type}</Type>

@@ -3,8 +3,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import { CharacterScreen } from 'src/modules/character'
 import { DetailedCharacter } from 'src/modules/character/detailed-character'
-import { BackButton } from 'src/ui/back-button'
 
+import { Header } from '../ui/header'
 import { Routes } from './routes'
 
 const Character = createNativeStackNavigator()
@@ -20,8 +20,7 @@ export const CharacterStack = () => {
         name={Routes.DetailedCharacter}
         component={DetailedCharacter}
         options={{
-          headerTitleAlign: 'center',
-          headerLeft: () => <BackButton />,
+          header: ({ navigation }) => <Header navigation={navigation} />,
         }}
       />
     </Character.Navigator>

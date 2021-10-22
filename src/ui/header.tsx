@@ -33,11 +33,21 @@ const Title = styled.Text`
   font-family: Montserrat-SemiBold;
 `
 
+const TitleWrapper = styled.View`
+  width: 150px;
+`
+
 interface Props {
   navigation: NativeStackNavigationProp<ParamListBase, string>
 }
 
-export const BackButton = ({ navigation }: Props) => {
+interface Params {
+  params: {
+    title: string
+  }
+}
+
+export const Header = ({ navigation }: Props) => {
   const { params } = useRoute()
 
   return (
@@ -46,7 +56,9 @@ export const BackButton = ({ navigation }: Props) => {
         <BackArrow />
         <BackText>Back</BackText>
       </Back>
-      <Title>{params.params.title}</Title>
+      <TitleWrapper>
+        <Title numberOfLines={1}>{(params as Params).params.title}</Title>
+      </TitleWrapper>
     </Wrapper>
   )
 }
