@@ -38,6 +38,11 @@ export const CharacterScreen = () => {
   return (
     <Container title="Character">
       <FlatList
+        contentContainerStyle={{
+          alignItems: 'center',
+          paddingTop: 10,
+          paddingBottom: 120,
+        }}
         horizontal={false}
         numColumns={2}
         showsVerticalScrollIndicator={false}

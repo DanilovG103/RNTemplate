@@ -17,7 +17,6 @@ const Title = styled.Text`
 const Wrapper = styled.View`
   width: 100%;
   background-color: ${colors.white};
-  padding: 25px 15px 45px;
 `
 
 interface Props {
