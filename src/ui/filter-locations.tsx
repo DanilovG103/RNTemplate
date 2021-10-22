@@ -21,21 +21,18 @@ export const FilterLocations = () => {
         title="Name"
         description="Give a name"
         isSelected={!!name}
-        withArrow
       />
       <FilterBlock
         onPress={() => setTypeVisible(true)}
         title="Type"
         description="Give a type"
         isSelected={!!type}
-        withArrow
       />
       <FilterBlock
         onPress={() => setDimensionVisible(true)}
         title="Dimension"
         description="Give a dimension"
         isSelected={!!dimension}
-        withArrow
       />
       <InputName
         visible={inputVisible}

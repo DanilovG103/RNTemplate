@@ -46,9 +46,8 @@ const FilterBlockStart = styled.View`
 interface Props {
   onPress: () => void
   title: string
-  description?: string
+  description: string
   isSelected: boolean
-  withArrow?: boolean
 }
 
 export const FilterBlock = ({
@@ -56,7 +55,6 @@ export const FilterBlock = ({
   title,
   description,
   isSelected,
-  withArrow,
 }: Props) => {
   return (
     <Wrapper onPress={onPress}>
@@ -64,10 +62,10 @@ export const FilterBlock = ({
         <Circle isSelected={isSelected} />
         <View>
           <FilterText>{title}</FilterText>
-          {description && <FilterDescription>{description}</FilterDescription>}
+          <FilterDescription>{description}</FilterDescription>
         </View>
       </FilterBlockStart>
-      {withArrow && <Arrow />}
+      <Arrow />
     </Wrapper>
   )
 }

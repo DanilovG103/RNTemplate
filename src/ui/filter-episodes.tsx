@@ -21,14 +21,12 @@ export const FilterEpisode = () => {
         title="Name"
         description="Give a name"
         isSelected={!!episodeName}
-        withArrow
       />
       <FilterBlock
         onPress={() => setEpisodeVisible(true)}
         title="Episode"
         description="Select one"
         isSelected={!!episode}
-        withArrow
       />
       <InputName
         visible={inputVisible}
