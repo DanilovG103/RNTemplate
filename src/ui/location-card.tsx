@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components/native'
 
-import { Location, LocationFieldFragment } from 'src/generated/graphql'
+import { LocationFieldFragment } from 'src/generated/graphql'
 import { Routes, useNavigation } from 'src/navigation/routes'
 import { colors } from 'src/theme/colors'
 
@@ -10,7 +10,7 @@ const Card = styled.TouchableOpacity`
   border-radius: 8px;
   margin: 5px;
   padding: 5px 15px 15px;
-  width: 150px;
+  width: 160px;
 `
 
 const Type = styled.Text`

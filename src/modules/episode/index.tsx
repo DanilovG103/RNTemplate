@@ -1,13 +1,17 @@
 import React, { useState } from 'react'
 import { ActivityIndicator, FlatList } from 'react-native'
 
+import { useEpisodesFilter } from 'src/context/episodes-filter'
 import { useEpisodesQuery } from 'src/generated/graphql'
 import { Container } from 'src/ui/container'
 import { EpisodeCard } from 'src/ui/episode-card'
 
 export const EpisodeScreen = () => {
+  const { episodeName: name, episode } = useEpisodesFilter()
   const [page, setPage] = useState(1)
-  const { data, fetchMore } = useEpisodesQuery({ variables: { page: 1 } })
+  const { data, fetchMore } = useEpisodesQuery({
+    variables: { page: 1, name, episode },
+  })
 
   const limit = data?.episodes?.results?.length === data?.episodes?.info?.count
 
@@ -21,7 +25,7 @@ export const EpisodeScreen = () => {
         return {
           episodes: {
             info: {
-              count: data?.episodes?.info?.count,
+              count: prevData.episodes?.info?.count,
             },
             results: [
               ...(prevData?.episodes?.results ?? []),
@@ -37,6 +41,7 @@ export const EpisodeScreen = () => {
   return (
     <Container title="Episode">
       <FlatList
+        contentContainerStyle={{ paddingBottom: 160, paddingHorizontal: 15 }}
         data={data?.episodes?.results ?? []}
         renderItem={({ item }) => <EpisodeCard episode={item} />}
         showsVerticalScrollIndicator={false}

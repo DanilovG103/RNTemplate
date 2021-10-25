@@ -9,8 +9,22 @@ import {
 
 const getCharacters = gql`
   ${charactersField}
-  query Characters($page: Int, $name: String) {
-    characters(page: $page, filter: { name: $name }) {
+  query Characters(
+    $page: Int
+    $name: String
+    $species: String
+    $gender: String
+    $status: String
+  ) {
+    characters(
+      page: $page
+      filter: {
+        name: $name
+        status: $status
+        gender: $gender
+        species: $species
+      }
+    ) {
       results {
         gender
         ...characters
