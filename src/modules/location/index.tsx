@@ -42,6 +42,7 @@ export const LocationScreen = () => {
   return (
     <Container title="Location">
       <FlatList
+        contentContainerStyle={{ alignItems: 'center', paddingTop: 10 }}
         data={data?.locations?.results ?? []}
         renderItem={({ item }) => <LocationCard location={item} />}
         horizontal={false}

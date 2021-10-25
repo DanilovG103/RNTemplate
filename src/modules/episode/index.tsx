@@ -25,7 +25,7 @@ export const EpisodeScreen = () => {
         return {
           episodes: {
             info: {
-              count: data?.episodes?.info?.count,
+              count: prevData.episodes?.info?.count,
             },
             results: [
               ...(prevData?.episodes?.results ?? []),
@@ -41,6 +41,7 @@ export const EpisodeScreen = () => {
   return (
     <Container title="Episode">
       <FlatList
+        contentContainerStyle={{ paddingBottom: 160, paddingHorizontal: 15 }}
         data={data?.episodes?.results ?? []}
         renderItem={({ item }) => <EpisodeCard episode={item} />}
         showsVerticalScrollIndicator={false}
