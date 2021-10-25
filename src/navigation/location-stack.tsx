@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { LocationScreen } from 'src/modules/location'
 import { DetailedLocation } from 'src/modules/location/detailed-location'
 import { BackButton } from 'src/ui/back-button'
+import { FilterLocations } from 'src/ui/filter-locations'
 
 import { Routes } from './routes'
 
@@ -15,6 +16,7 @@ export const LocationStack = () => {
       <Location.Screen
         name={Routes.LocationScreen}
         component={LocationScreen}
+        options={{ header: () => <FilterLocations /> }}
       />
       <Location.Screen
         name={Routes.DetailedLocation}

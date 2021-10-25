@@ -3,7 +3,7 @@ import styled from 'styled-components/native'
 
 import { colors } from 'src/theme/colors'
 
-const Background = styled.View`
+const Background = styled.SafeAreaView`
   align-items: center;
 `
 

@@ -1,13 +1,17 @@
 import React, { useState } from 'react'
 import { ActivityIndicator, FlatList } from 'react-native'
 
+import { useLocationsFilter } from 'src/context/location-filter'
 import { useLocationsQuery } from 'src/generated/graphql'
 import { Container } from 'src/ui/container'
 import { LocationCard } from 'src/ui/location-card'
 
 export const LocationScreen = () => {
   const [page, setPage] = useState(1)
-  const { data, fetchMore } = useLocationsQuery({ variables: { page: 1 } })
+  const { name, type, dimension } = useLocationsFilter()
+  const { data, fetchMore } = useLocationsQuery({
+    variables: { page: 1, name, type, dimension },
+  })
 
   const limit =
     data?.locations?.results?.length === data?.locations?.info?.count

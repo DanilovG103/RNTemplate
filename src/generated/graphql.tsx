@@ -239,6 +239,9 @@ export type LocationFieldFragment = {
 export type CharactersQueryVariables = Exact<{
   page: Maybe<Scalars['Int']>
   name: Maybe<Scalars['String']>
+  species: Maybe<Scalars['String']>
+  gender: Maybe<Scalars['String']>
+  status: Maybe<Scalars['String']>
 }>
 
 export type CharactersQuery = {
@@ -298,6 +301,8 @@ export type CharacterQuery = {
 
 export type EpisodesQueryVariables = Exact<{
   page: Maybe<Scalars['Int']>
+  name: Maybe<Scalars['String']>
+  episode: Maybe<Scalars['String']>
 }>
 
 export type EpisodesQuery = {
@@ -345,6 +350,9 @@ export type EpisodeQuery = {
 
 export type LocationsQueryVariables = Exact<{
   page: Maybe<Scalars['Int']>
+  name: Maybe<Scalars['String']>
+  type: Maybe<Scalars['String']>
+  dimension: Maybe<Scalars['String']>
 }>
 
 export type LocationsQuery = {
@@ -433,8 +441,22 @@ export const LocationFieldFragmentDoc = gql`
   }
 `
 export const CharactersDocument = gql`
-  query Characters($page: Int, $name: String) {
-    characters(page: $page, filter: { name: $name }) {
+  query Characters(
+    $page: Int
+    $name: String
+    $species: String
+    $gender: String
+    $status: String
+  ) {
+    characters(
+      page: $page
+      filter: {
+        name: $name
+        status: $status
+        gender: $gender
+        species: $species
+      }
+    ) {
       results {
         gender
         ...characters
@@ -461,6 +483,9 @@ export const CharactersDocument = gql`
  *   variables: {
  *      page: // value for 'page'
  *      name: // value for 'name'
+ *      species: // value for 'species'
+ *      gender: // value for 'gender'
+ *      status: // value for 'status'
  *   },
  * });
  */
@@ -568,8 +593,8 @@ export type CharacterQueryResult = Apollo.QueryResult<
   CharacterQueryVariables
 >
 export const EpisodesDocument = gql`
-  query Episodes($page: Int) {
-    episodes(page: $page) {
+  query Episodes($page: Int, $name: String, $episode: String) {
+    episodes(page: $page, filter: { name: $name, episode: $episode }) {
       info {
         ...infoField
       }
@@ -596,6 +621,8 @@ export const EpisodesDocument = gql`
  * const { data, loading, error } = useEpisodesQuery({
  *   variables: {
  *      page: // value for 'page'
+ *      name: // value for 'name'
+ *      episode: // value for 'episode'
  *   },
  * });
  */
@@ -691,8 +718,16 @@ export type EpisodeQueryResult = Apollo.QueryResult<
   EpisodeQueryVariables
 >
 export const LocationsDocument = gql`
-  query Locations($page: Int) {
-    locations(page: $page) {
+  query Locations(
+    $page: Int
+    $name: String
+    $type: String
+    $dimension: String
+  ) {
+    locations(
+      page: $page
+      filter: { name: $name, type: $type, dimension: $dimension }
+    ) {
       info {
         ...infoField
       }
@@ -722,6 +757,9 @@ export const LocationsDocument = gql`
  * const { data, loading, error } = useLocationsQuery({
  *   variables: {
  *      page: // value for 'page'
+ *      name: // value for 'name'
+ *      type: // value for 'type'
+ *      dimension: // value for 'dimension'
  *   },
  * });
  */

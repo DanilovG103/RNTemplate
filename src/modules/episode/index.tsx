@@ -1,13 +1,17 @@
 import React, { useState } from 'react'
 import { ActivityIndicator, FlatList } from 'react-native'
 
+import { useEpisodesFilter } from 'src/context/episodes-filter'
 import { useEpisodesQuery } from 'src/generated/graphql'
 import { Container } from 'src/ui/container'
 import { EpisodeCard } from 'src/ui/episode-card'
 
 export const EpisodeScreen = () => {
+  const { episodeName: name, episode } = useEpisodesFilter()
   const [page, setPage] = useState(1)
-  const { data, fetchMore } = useEpisodesQuery({ variables: { page: 1 } })
+  const { data, fetchMore } = useEpisodesQuery({
+    variables: { page: 1, name, episode },
+  })
 
   const limit = data?.episodes?.results?.length === data?.episodes?.info?.count
 
