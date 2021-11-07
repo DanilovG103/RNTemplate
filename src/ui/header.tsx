@@ -10,15 +10,14 @@ import { colors } from 'src/theme/colors'
 const Wrapper = styled.SafeAreaView`
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  justify-content: space-around;
+  width: 82%;
 `
 
 const Back = styled.TouchableOpacity`
-  position: absolute;
   flex-direction: row;
-  left: 25px;
-  top: 45px;
+  align-items: center;
 `
 
 const BackText = styled.Text`
