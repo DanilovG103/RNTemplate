@@ -10,9 +10,9 @@ import { colors } from 'src/theme/colors'
 const Wrapper = styled.SafeAreaView`
   flex-direction: row;
   align-items: center;
-  margin-bottom: 10px;
+  margin: 25px 0;
   justify-content: space-around;
-  width: 82%;
+  width: 83%;
 `
 
 const Back = styled.TouchableOpacity`
