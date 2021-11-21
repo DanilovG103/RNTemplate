@@ -1,16 +1,14 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { ActivityIndicator, FlatList } from 'react-native'
 import { useRoute } from '@react-navigation/core'
 import styled from 'styled-components/native'
 
 import { useCharacterQuery } from 'src/generated/graphql'
-import { useNavigation } from 'src/navigation/routes'
 import { colors } from 'src/theme/colors'
 import { CharacterInfo } from 'src/ui/character-info'
 import { DetailedContainer } from 'src/ui/detailed-container'
 import { EpisodeCard } from 'src/ui/episode-card'
 
-import { formatTitle } from '../functions/format-title'
 import { Params } from './types'
 
 const Info = styled.Text`
@@ -29,18 +27,11 @@ const Line = styled.View`
 `
 
 export const DetailedCharacter = () => {
-  const { setOptions } = useNavigation()
   const { params } = useRoute()
 
   const { data, loading } = useCharacterQuery({
     variables: { id: (params as Params).id },
   })
-
-  const title = formatTitle((params as Params).title)
-
-  useEffect(() => {
-    setOptions({ title })
-  }, [setOptions, title])
 
   if (loading) {
     return <ActivityIndicator color={colors.indigo} size="large" />
